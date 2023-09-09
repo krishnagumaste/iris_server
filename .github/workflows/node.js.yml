@@ -28,4 +28,4 @@ jobs:
     - run: |
         touch .env
         echo "${{ secrets.ENV_FILE }}" > .env
-    - run: pm2 restart iris_server
+    - run: /usr/local/bin/pm2 restart iris_server
