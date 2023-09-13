@@ -10,6 +10,7 @@ import {
 import { handleUpload } from "./components/upload.js";
 import { handleLambda } from "./components/lambda.js";
 import dotenv from "dotenv";
+import { handlePatientDetails } from "./components/patientdetails.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -27,6 +28,8 @@ app.post("/signup", handleSignup);
 app.post("/verifyotp", handleVerifyToken, handleVerifyotp);
 
 app.post("/upload", handleUpload);
+
+app.post("/patientdetails", handlePatientDetails);
 
 app.post("/lambda", handleLambda);
 

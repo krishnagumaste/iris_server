@@ -81,3 +81,19 @@ export const checkUser = async (email, phoneNumber) => {
     return false;
   }
 };
+
+export const addPatient = async (user_id, name, age, currDate, imageName) => {
+  try {
+    const ageInt = parseInt(age, 10);
+    const dateObj = new Date(currDate);
+
+    const result = await pool.query(
+      `INSERT INTO image_and_details (user_id, name, age, currDate, imageName) VALUES (?, ?, ?, ?, ?)`,
+      [user_id, name, ageInt, dateObj, imageName]
+    );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
