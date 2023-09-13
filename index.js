@@ -13,6 +13,7 @@ import dotenv from "dotenv";
 import { handlePatientDetails } from "./components/patientdetails.js";
 import { handleIPRatio } from "./components/ipratio.js";
 import { handleGetImageDetails } from "./components/getimagedetails.js";
+import { handleGetImage } from "./components/getimage.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -38,6 +39,8 @@ app.post("/lambda", handleLambda);
 app.post("/ipratio", handleIPRatio);
 
 app.post("/getimagedetails", handleGetImageDetails);
+
+app.post("/getimage", handleGetImage);
 
 app.get("/test", handleTest);
 

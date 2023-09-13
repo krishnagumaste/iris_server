@@ -15,10 +15,10 @@ const s3Client = new S3Client({
   },
 });
 
-export async function getObject(key) {
+export async function getObject(filename) {
   const command = new GetObjectCommand({
     Bucket: process.env.AWS_BUCKET,
-    Key: key,
+    Key: filename,
   });
 
   const url = await getSignedUrl(s3Client, command);
@@ -28,7 +28,7 @@ export async function getObject(key) {
 export async function putObject(filename, contentType) {
   const command = new PutObjectCommand({
     Bucket: process.env.AWS_BUCKET,
-    Key: `/upload/users-upload/${filename}`,
+    Key: filename,
     ContentType: contentType,
   });
   const url = await getSignedUrl(s3Client, command);
