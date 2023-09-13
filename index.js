@@ -11,6 +11,8 @@ import { handleUpload } from "./components/upload.js";
 import { handleLambda } from "./components/lambda.js";
 import dotenv from "dotenv";
 import { handlePatientDetails } from "./components/patientdetails.js";
+import { handleIPRatio } from "./components/ipratio.js";
+import { handleGetImageDetails } from "./components/getimagedetails.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -32,6 +34,10 @@ app.post("/upload", handleUpload);
 app.post("/patientdetails", handlePatientDetails);
 
 app.post("/lambda", handleLambda);
+
+app.post("/ipratio", handleIPRatio);
+
+app.post("/getimagedetails", handleGetImageDetails);
 
 app.get("/test", handleTest);
 

@@ -97,3 +97,35 @@ export const addPatient = async (user_id, name, age, currDate, imageName) => {
     return false;
   }
 };
+
+export const addIPRatio = async (imageName, ipratio) => {
+  try {
+    const result = await pool.query(
+      `INSERT INTO ip_ratio (imageName, ipratio) VALUES (?, ?)`,
+      [imageName, ipratio]
+    );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const getImageDetails = async (user_id) => {
+  try {
+    const [result] = await pool.query(
+      `select i.* , id.name, id.age, id.currDate from ip_ratio i inner join image_and_details id on id.imageName=i.imageName inner join users u on u.user_id = ?;`,
+      [user_id]
+    );
+    if (result && result.length > 0) {
+      return result;
+    } else {
+      return {
+        message: "Couldn't get the image details for the user",
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return { message: "Couldn't get the image details for the user" };
+  }
+};
