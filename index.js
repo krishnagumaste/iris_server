@@ -8,6 +8,7 @@ import {
   handleVerifyToken,
 } from "./components/signup.js";
 import { handleUpload } from "./components/upload.js";
+import { handleLambda } from "./components/lambda.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -26,6 +27,8 @@ app.post("/signup", handleSignup);
 app.post("/verifyotp", handleVerifyToken, handleVerifyotp);
 
 app.post("/upload", handleUpload);
+
+app.post("/lambda", handleLambda);
 
 app.get("/test", handleTest);
 
