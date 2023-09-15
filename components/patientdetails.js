@@ -2,10 +2,17 @@ import { addPatient } from "./database.js";
 import axios from "axios";
 
 export const handlePatientDetails = async (req, res) => {
-  const { user_id, name, age, currDate, imageName } = req.body;
+  const { user_id, name, age, currDate, imageName, imageId } = req.body;
 
   try {
-    const result = await addPatient(user_id, name, age, currDate, imageName);
+    const result = await addPatient(
+      user_id,
+      name,
+      age,
+      currDate,
+      imageName,
+      imageId
+    );
 
     if (result) {
       await axios

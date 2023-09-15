@@ -1,8 +1,13 @@
 import { addIPRatio } from "./database.js";
+// import { getIPRatio } from "./getipratio.js";
 
 export const handleIPRatio = async (req, res) => {
   const image = req.body.image;
+  // const ipratio = await getIPRatio(image);
   const ipratio = 1;
+  if (ipratio === false) {
+    res.status(400).json({ message: "Failed to get the IP Ratio" });
+  }
   try {
     const result = await addIPRatio(image, ipratio);
 
