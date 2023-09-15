@@ -14,7 +14,8 @@
 //       const imageBase64 = Buffer.from(imageBuffer).toString("base64");
 
 //       // const lambdaResponse = await invokeLambdaFunction(imageBase64);
-//       const lambdaResponse = await invokePython(imageBase64);
+//       //   const lambdaResponse = await invokePython(imageBase64);
+//       const res = await invokeGoogleColab(imageBase64);
 
 //       // Check if lambdaResponse is null and return false in that case
 //       if (lambdaResponse === null) {

@@ -121,7 +121,7 @@ export const addIPRatio = async (imageName, ipratio) => {
 export const getImageDetails = async (user_id) => {
   try {
     const [result] = await pool.query(
-      `select i.* , id.name, id.age, id.currDate from ip_ratio i inner join image_and_details id on id.imageName=i.imageName inner join users u on u.user_id = ?;`,
+      `select i.* , id.name, id.age, id.currDate, id.imageId from ip_ratio i inner join image_and_details id on id.imageName=i.imageName inner join users u on u.user_id = ?;`,
       [user_id]
     );
     if (result && result.length > 0) {
