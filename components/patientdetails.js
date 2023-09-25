@@ -2,7 +2,8 @@ import { addPatient } from "./database.js";
 import axios from "axios";
 
 export const handlePatientDetails = async (req, res) => {
-  const { user_id, name, age, currDate, imageName, imageId } = req.body;
+  const { user_id, name, age, currDate, imageName, imageId, luxValue } =
+    req.body;
 
   try {
     const result = await addPatient(
@@ -18,14 +19,19 @@ export const handlePatientDetails = async (req, res) => {
       await axios
         .post("http://43.205.235.49/api/ipratio", {
           image: imageName,
+          luxValue: luxValue,
         })
         .then((response) => {
-          console.log(response.data);
+          res.status(200).json({
+            message: "Patient details added successfully",
+            response: response.data,
+          });
         })
         .catch((error) => {
-          console.log(error);
+          res
+            .status(400)
+            .json({ message: "Failed to add ip ratio", error: error.data }); //maybe in future i need to handle this
         });
-      res.status(200).json({ message: "Patient details added successfully" });
     } else {
       res.status(400).json({ message: "Failed to add patient details" });
     }

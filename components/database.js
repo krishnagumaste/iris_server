@@ -91,12 +91,11 @@ export const addPatient = async (
   imageId
 ) => {
   try {
-    const ageInt = parseInt(age, 10);
     const dateObj = new Date(currDate);
 
     const result = await pool.query(
       `INSERT INTO image_and_details (user_id, name, age, currDate, imageName, imageId) VALUES (?, ?, ?, ?, ?, ?)`,
-      [user_id, name, ageInt, dateObj, imageName, imageId]
+      [user_id, name, age, dateObj, imageName, imageId]
     );
     return true;
   } catch (error) {
@@ -105,11 +104,11 @@ export const addPatient = async (
   }
 };
 
-export const addIPRatio = async (imageName, ipratio) => {
+export const addIPRatio = async (imageName, ipratio, luxValue) => {
   try {
     const result = await pool.query(
-      `INSERT INTO ip_ratio (imageName, ipratio) VALUES (?, ?)`,
-      [imageName, ipratio]
+      `INSERT INTO ip_ratio (imageName, ipratio, luxValue) VALUES (?, ?, ?)`,
+      [imageName, ipratio, luxValue]
     );
     return true;
   } catch (error) {
